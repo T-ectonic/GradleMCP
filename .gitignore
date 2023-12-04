@@ -1,0 +1,21 @@
+### Gradle ###
+.gradle/
+gradle/
+build/
+gradlew
+gradlew.bat
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+### MCP ###
+.run/
+!.run/versions
+!.run/assets/log_configs
+!.run/assets/objects
+!.run/assets/indexes
+!.run/bin/

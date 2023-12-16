@@ -1,5 +1,3 @@
-import org.gradle.internal.impldep.org.junit.experimental.categories.Categories.CategoryFilter.exclude
-
 plugins {
     id("java")
 }
@@ -11,7 +9,6 @@ description = "GradleMCP allow for the usage of gradle build system with MCP."
 repositories {
     mavenCentral()
     maven { url = uri("https://libraries.minecraft.net") }
-    maven { url = uri("https://nifty-gui.sourceforge.net/nifty-maven-repo/") }
 }
 
 dependencies {
@@ -45,19 +42,21 @@ dependencies {
     implementation(group = "tv.twitch", name = "twitch", version = "6.5")
 }
 
+val appDataDir: String = System.getenv("APPDATA")
+
 tasks.register<JavaExec>("RunClient") {
     group = "GradleMCP"
     description = "Runs the client"
     classpath(sourceSets.getByName("main").runtimeClasspath)
 
-    workingDir = file(".run")
+    workingDir = file("$appDataDir\\.minecraft")
     args("--version", "${project.name}-1.8.8")
     args("--assetsDir", "assets")
     args("--assetIndex", "1.8")
     args("--accessToken", "0")
     args("--userProperties", "{}")
 
-    systemProperty("java.library.path", "bin/natives/")
+    systemProperty("java.library.path", "${projectDir}/natives")
     systemProperty("log4j2.formatMsgNoLookups", "true")
 
     mainClass = "net.minecraft.client.main.Main"

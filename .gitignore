@@ -11,11 +11,3 @@ gradlew.bat
 *.iml
 *.ipr
 out/
-
-### MCP ###
-.run/
-!.run/versions
-!.run/assets/log_configs
-!.run/assets/objects
-!.run/assets/indexes
-!.run/bin/
